@@ -1,22 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
-  <entry>
-    <title><![CDATA[Hexo建站]]></title>
-    <url>%2F2018%2F10%2F23%2Fnodejs_hexo%2F</url>
-    <content type="text"><![CDATA[hexo建站参考 准备1.安装git win win下设置git bash代理方法 export http_proxy=&quot;http://127.0.0.1:1083&quot; export https_proxy=&quot;http://127.0.0.1:1083&quot; # 如果报错SSL certificate problem: unable to get local issuer certificate git config --global http.sslVerify false 2.安装npm 安装包安装 # tar xf node-v10.9.0-linux-x64.tar.xz // 解压 # cd node-v10.9.0-linux-x64/ // 进入解压目录 # ./bin/node -v // 执行node命令 查看版本 ln -s /opt/node-v8.12.0-linux-x64/bin/npm /usr/local/bin/ ln -s /opt/node-v8.12.0-linux-x64/bin/node /usr/local/bin/ 编译安装 通过nvm安装 $ curl https://raw.github.com/creationix/nvm/v0.33.11/install.sh | sh nvm install stable 修改源地址为淘宝 NPM 镜像 npm config set registry http://registry.npm.taobao.org/ 修改源地址为官方源 npm config set registry https://registry.npmjs.org/ 安装Hexonpm install -g hexo-cli 建站安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件 $ hexo init &lt;folder&gt; $ cd &lt;folder&gt; $ npm install 新建完成后，指定文件夹的目录如下： ./doc/ ├── _config.yml ├── node_modules ├── package.json ├── package-lock.json ├── scaffolds ├── source └── themes 启动服务器 hexo server 这时候，访问 http://localhost:4000/ 就可以看到 主题Hexo提供了默认主题landscape，其他主题。如果使用Next主题，方法： $ cd blog $ git clone https://github.com/theme-next/hexo-theme-next themes/next/ 然后在修改/blog/config.yml文件，将其中的theme改成next theme: next 添加按钮Next主题默认按钮是Home、Archive，我们一般会加上tag about category serach。主题的文件夹(./themes/next/)下找到_config.yml文件。在主题配置文件找到menu字段: menu: home: / || home #about: /about/ || user tags: /tags/ || tags #categories: /categories/ || th archives: /archives/ || archive #schedule: /schedule/ || calendar #sitemap: /sitemap.xml || sitemap #commonweal: /404/ || heartbeat https://www.jianshu.com/p/84a8384be1aehttps://callmewing.com/2017/04/17/Hexo%E5%8D%9A%E5%AE%A2%E9%9B%86%E6%88%90GitBook/ https://juejin.im/post/5a6ee00ef265da3e4b770ac1https://theme-next.iissnan.com/third-party-services.html#algolia-search]]></content>
-      <tags>
-        <tag>Tool</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Python]]></title>
-    <url>%2F2018%2F10%2F17%2Fpython%2F</url>
-    <content type="text"><![CDATA[虚拟环境配置1.安装pipTo install pip, securely download get-pip.py. [1]: curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py Inspect get-pip.py for any malevolence. Then run the following: python get-pip.py Upgrading pipOn Linux or macOS: pip install -U pip On Windows [4]: python -m pip install -U pip 国内镜像 阿里云 http://mirrors.aliyun.com/pypi/simple/ 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 豆瓣(douban) http://pypi.douban.com/simple/ 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/ 2.安装 virtualenvpip install virtualenv 3.安装 virtualenvwrapperpip install virtualenvwrapper #命令生效 if [ -f /usr/bin/virtualenvwrapper.sh ]; then export WORKON_HOME=$HOME/.virtualenvs source /usr/bin/virtualenvwrapper.sh fi 常用命令 mkvirtualenv dev lsvirtualenv -b # 列出虚拟环境 workon [虚拟环境名称] # 切换虚拟环境 lssitepackages # 查看环境里安装了哪些包 cdvirtualenv [子目录名] # 进入当前环境的目录 cpvirtualenv [source] [dest] # 复制虚拟环境 deactivate # 退出虚拟环境 rmvirtualenv [虚拟环境名称] # 删除虚拟环境 4.安装pylintpip install pylint 官方说明]]></content>
+<search> 
+  
+    
+    <entry>
+      <title>Hexo建站</title>
+      <link href="/2018/10/23/nodejs_hexo/"/>
+      <url>/2018/10/23/nodejs_hexo/</url>
+      
+        <content type="html"><![CDATA[<h1 id="hexo建站"><a href="#hexo建站" class="headerlink" title="hexo建站"></a>hexo建站</h1><p><a href="https://hexo.io/zh-cn/docs" target="_blank" rel="noopener">参考</a></p><h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><p>1.安装git  <a href="https://git-scm.com/download/win" target="_blank" rel="noopener">win</a></p><a id="more"></a><p>win下设置git bash代理方法</p><pre><code>export http_proxy=&quot;http://127.0.0.1:1083&quot; export https_proxy=&quot;http://127.0.0.1:1083&quot; # 如果报错SSL certificate problem: unable to get local issuer certificategit config --global http.sslVerify false </code></pre><p>2.安装<a href="https://nodejs.org/dist/v8.12.0/node-v8.12.0-linux-x64.tar.xz" target="_blank" rel="noopener">npm</a></p><pre><code>安装包安装# tar xf  node-v10.9.0-linux-x64.tar.xz       // 解压# cd node-v10.9.0-linux-x64/                  // 进入解压目录# ./bin/node -v                               // 执行node命令 查看版本ln -s /opt/node-v8.12.0-linux-x64/bin/npm    /usr/local/bin/ ln -s /opt/node-v8.12.0-linux-x64/bin/node   /usr/local/bin/</code></pre><p><a href="http://www.runoob.com/nodejs/nodejs-install-setup.html" target="_blank" rel="noopener">编译安装</a></p><p>通过<a href="https://hexo.io/zh-cn/docs/index.html" target="_blank" rel="noopener">nvm安装</a></p><pre><code>$ curl https://raw.github.com/creationix/nvm/v0.33.11/install.sh | shnvm install stable</code></pre><p><strong>修改源地址为淘宝 NPM 镜像</strong></p><pre><code>npm config set registry http://registry.npm.taobao.org/</code></pre><p><strong>修改源地址为官方源</strong></p><pre><code>npm config set registry https://registry.npmjs.org/</code></pre><h2 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h2><pre><code>npm install -g hexo-cli</code></pre><h2 id="建站"><a href="#建站" class="headerlink" title="建站"></a>建站</h2><p>安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件</p><pre><code>$ hexo init &lt;folder&gt;$ cd &lt;folder&gt;$ npm install</code></pre><p>新建完成后，指定文件夹的目录如下：</p><pre><code>./doc/├── _config.yml├── node_modules├── package.json├── package-lock.json├── scaffolds├── source└── themes</code></pre><p>启动服务器</p><pre><code>hexo server</code></pre><p>这时候，访问 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 就可以看到</p><h2 id="主题"><a href="#主题" class="headerlink" title="主题"></a>主题</h2><p>Hexo提供了默认主题landscape，<a href="https://hexo.io/themes/" target="_blank" rel="noopener">其他主题</a>。如果使用<a href="https://theme-next.iissnan.com/getting-started.html" target="_blank" rel="noopener"><strong>Next主题</strong></a>，方法：</p><pre><code>$ cd blog$ git clone https://github.com/theme-next/hexo-theme-next themes/next/</code></pre><p>然后在修改/blog/config.yml文件，将其中的theme改成next</p><pre><code>theme: next    </code></pre><h3 id="添加按钮"><a href="#添加按钮" class="headerlink" title="添加按钮"></a>添加按钮</h3><p>Next主题默认按钮是Home、Archive，我们一般会加上tag about category serach。主题的文件夹(./themes/next/)下找到_config.yml文件。在主题配置文件找到menu字段:</p><pre><code>menu:  home: / || home  #about: /about/ || user  tags: /tags/ || tags  #categories: /categories/ || th  archives: /archives/ || archive  #schedule: /schedule/ || calendar  #sitemap: /sitemap.xml || sitemap  #commonweal: /404/ || heartbeat</code></pre><p><a href="https://www.jianshu.com/p/84a8384be1ae" target="_blank" rel="noopener">https://www.jianshu.com/p/84a8384be1ae</a><br><a href="https://callmewing.com/2017/04/17/Hexo%E5%8D%9A%E5%AE%A2%E9%9B%86%E6%88%90GitBook/" target="_blank" rel="noopener">https://callmewing.com/2017/04/17/Hexo%E5%8D%9A%E5%AE%A2%E9%9B%86%E6%88%90GitBook/</a></p><p><a href="https://juejin.im/post/5a6ee00ef265da3e4b770ac1" target="_blank" rel="noopener">https://juejin.im/post/5a6ee00ef265da3e4b770ac1</a><br><a href="https://theme-next.iissnan.com/third-party-services.html#algolia-search" target="_blank" rel="noopener">https://theme-next.iissnan.com/third-party-services.html#algolia-search</a></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> Tool </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    <entry>
+      <title>Python</title>
+      <link href="/2018/10/17/python/"/>
+      <url>/2018/10/17/python/</url>
+      
+        <content type="html"><![CDATA[<h2 id="虚拟环境配置"><a href="#虚拟环境配置" class="headerlink" title="虚拟环境配置"></a>虚拟环境配置</h2><h3 id="1-安装pip"><a href="#1-安装pip" class="headerlink" title="1.安装pip"></a>1.安装pip</h3><p>To install pip, securely download get-pip.py. [1]:</p><pre><code>curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py</code></pre><a id="more"></a><p>Inspect get-pip.py for any malevolence. Then run the following:</p><pre><code>python get-pip.py</code></pre><p>Upgrading pip<br>On Linux or macOS:</p><pre><code>pip install -U pip</code></pre><p>On Windows [4]:</p><pre><code>python -m pip install -U pip</code></pre><p>国内镜像</p><pre><code>阿里云 http://mirrors.aliyun.com/pypi/simple/中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 豆瓣(douban) http://pypi.douban.com/simple/ 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/</code></pre><h3 id="2-安装-virtualenv"><a href="#2-安装-virtualenv" class="headerlink" title="2.安装 virtualenv"></a>2.安装 virtualenv</h3><pre><code>pip install virtualenv</code></pre><h3 id="3-安装-virtualenvwrapper"><a href="#3-安装-virtualenvwrapper" class="headerlink" title="3.安装 virtualenvwrapper"></a>3.安装 virtualenvwrapper</h3><pre><code>pip install virtualenvwrapper#命令生效if [ -f /usr/bin/virtualenvwrapper.sh ]; then    export WORKON_HOME=$HOME/.virtualenvs       source /usr/bin/virtualenvwrapper.shfi</code></pre><p>常用命令</p><pre><code>mkvirtualenv devlsvirtualenv -b # 列出虚拟环境workon [虚拟环境名称] # 切换虚拟环境lssitepackages # 查看环境里安装了哪些包cdvirtualenv [子目录名] # 进入当前环境的目录cpvirtualenv [source] [dest] # 复制虚拟环境deactivate # 退出虚拟环境rmvirtualenv [虚拟环境名称] # 删除虚拟环境</code></pre><h3 id="4-安装pylint"><a href="#4-安装pylint" class="headerlink" title="4.安装pylint"></a>4.安装pylint</h3><pre><code>pip install pylint</code></pre><p><a href="http://pylint.pycqa.org/en/latest/" title="官方说明" target="_blank" rel="noopener">官方说明</a></p>]]></content>
+      
+      
       <categories>
-        <category>Python开发</category>
+          
+          <category> Python开发 </category>
+          
       </categories>
-      <tags>
-        <tag>Dev</tag>
-      </tags>
-  </entry>
+      
+      
+        <tags>
+            
+            <tag> Dev </tag>
+            
+        </tags>
+      
+    </entry>
+    
+  
+  
 </search>
