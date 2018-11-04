@@ -173,3 +173,24 @@ OR
 2Using the mount.cifs command, mount the SMB share into lib_core using the Active Directory user account _share_library_core. We need to map the UID of our svc_library_core account (5000) and the gid of our share_library_core group (6000) to the SMB share.
 
 	mount.cifs -o vers=2.0,user=wiwiz,pass="zhangheng2",uid=5000,gid=6000 //172.16.1.105/BaiduNetdiskDownload /mnt/share/ 
+
+## 配置SSH免密
+[创建SSH key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/#platform-windows)
+
+1 Paste the text below, substituting in your GitHub email address.
+
+	ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+This creates a new ssh key, using the provided email as a label.
+
+	Generating public/private rsa key pair.
+2 When you're prompted to "Enter a file in which to save the key," press Enter. This accepts the default file location.
+
+	 Enter a file in which to save the key (/c/Users/you/.ssh/id_rsa):[Press enter]
+3 At the prompt, type a secure passphrase. For more information, see "Working with SSH key passphrases".
+	
+	Enter passphrase (empty for no passphrase): [Type a passphrase]
+	Enter same passphrase again: [Type passphrase again]
+
+4 将当前的密钥作为公钥
+
+	cat authorized_keys_from_hadoop1 >> id_rsa.pub  
