@@ -26,6 +26,7 @@ On Windows [4]:
 
 国内镜像
 
+	vi ~/.pip/pip.conf
 	阿里云 http://mirrors.aliyun.com/pypi/simple/
 	中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/ 
 	豆瓣(douban) http://pypi.douban.com/simple/ 
