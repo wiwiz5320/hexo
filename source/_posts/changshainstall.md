@@ -12,10 +12,15 @@ categories:
 
 [配置文件](https://ansible-tran.readthedocs.io/en/latest/docs/intro_configuration.html)
 
+	yum install ansible
 	cp -R /etc/ansible galaxy
 	# vi galaxy/ansible.cfg
 	inventory      = ./hosts
 	remote_user = deployer
+
+	mkdir roles
+	cd roles
+	ansible-galaxy init nginx
 
 	ansible-playbook playbook.yml 
 	ansible -m shell -a 'hostname' all
