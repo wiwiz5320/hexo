@@ -8,6 +8,14 @@ categories:
 - nsfocus
 ---
 
+#添加用户
+
+	groupadd mysql
+	useradd -g mysql -d /nonexistent -s /bin/false mysql
+	groupadd openldap
+	useradd -g openldap -d /nonexistent -s /bin/false openldap
+
+
 # ansible安装
 
 [配置文件](https://ansible-tran.readthedocs.io/en/latest/docs/intro_configuration.html)
@@ -25,8 +33,8 @@ categories:
 	ansible-playbook playbook.yml 
 	ansible -m shell -a 'hostname' all
 	ansible -i ./hosts all -u  deployer -m shell -a 'hostname'
+	-b -K
 
--b -K
 
 # 依赖包安装
 
@@ -35,3 +43,29 @@ categories:
 ## keepalive
 
 	sudo yum install keepalived
+
+## supervisor
+
+	sudo yum install supervisor
+	yum -y localinstall supervisor/*rpm
+	
+	# vim /usr/lib/systemd/system/supervisord.service
+	# supervisord service for systemd (CentOS 7.0+)
+	# by ET-CS (https://github.com/ET-CS)
+	[Unit]
+	Description=Supervisor daemon
+
+	[Service]
+	Type=forking
+	ExecStart=/usr/bin/supervisord -c /etc/supervisord.conf
+	ExecStop=/usr/bin/supervisorctl $OPTIONS shutdown
+	ExecReload=/usr/bin/supervisorctl $OPTIONS reload
+	KillMode=process
+	Restart=on-failure
+	RestartSec=42s
+
+	[Install]
+	WantedBy=multi-user.target	
+	
+
+	systemctl status supervisord
