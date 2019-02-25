@@ -8,6 +8,17 @@ categories:
 - nsfocus
 ---
 
+# KVM快照
+
+	#查看快照
+	virsh snapshot-list centos1
+	#创建快照
+	virsh snapshot-create-as centos1 centos1_sn1
+	#恢复快照
+	virsh snapshot-revert --domain centos1 centos1_sn1
+	
+
+
 # 配置免密
 
 	ssh-keygen
